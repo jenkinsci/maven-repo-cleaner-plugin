@@ -1,0 +1,12 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <f:section title="Maven Scheduled Repository Cleaner">
+    <f:entry title="${%Schedule}" help="/help/project-config/timer-format.html">
+      <f:textarea name="mavenrepocleaner.cronSpec"
+                  checkUrl="'${rootURL}/trigger/TimerTrigger/check?value='+escape(this.value)"
+                  value="${descriptor.cronSpec}" />
+    </f:entry>
+    <f:entry title="Expiration days">
+      <f:textbox name="mavenrepocleaner.expirationDays" value="${descriptor.expirationDays}" />
+    </f:entry>
+  </f:section>
+</j:jelly>
