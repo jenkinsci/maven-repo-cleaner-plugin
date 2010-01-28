@@ -67,6 +67,7 @@ public class MavenRepoCleanerProperty extends JobProperty<AbstractProject<?,?>> 
     public static final class DescriptorImpl extends JobPropertyDescriptor {
         private String cronSpec;
         private int expirationDays = 7;
+        private int expirationStyle = 1;
         
         public DescriptorImpl() {
             super(MavenRepoCleanerProperty.class);
@@ -99,6 +100,23 @@ public class MavenRepoCleanerProperty extends JobProperty<AbstractProject<?,?>> 
             } else {
                 expirationDays = 7;
             }
+
+            String expStyle = fixEmpty(req.getParameter("mavenrepocleaner.expirationStyle"));
+            if (expStyle != null) {
+                if (expStyle.equals("added")) {
+                    expirationStyle = 0;
+                }
+                else if (expStyle.equals("changed")) {
+                    expirationStyle = 1;
+                }
+                else if (expStyle.equals("regardless")) {
+                    expirationStyle = 2;
+                }
+                else {
+                    expirationStyle = 1;
+                }
+            }
+            
             save();
             return true;
         }
@@ -121,6 +139,10 @@ public class MavenRepoCleanerProperty extends JobProperty<AbstractProject<?,?>> 
 
         public int getExpirationDays() {
             return expirationDays;
+        }
+
+        public int getExpirationStyle() {
+            return expirationStyle;
         }
         
         public CronTabList getCronTab() throws ANTLRException {

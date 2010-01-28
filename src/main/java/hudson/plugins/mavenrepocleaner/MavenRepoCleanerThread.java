@@ -137,13 +137,18 @@ public class MavenRepoCleanerThread extends AsyncPeriodicWork {
 
         if(!dir.exists())
             return false;
-
-        // if younger than a month, keep it
+        
         long now = new Date().getTime();
-        if(dir.lastModified() + expirationDays * DAY > now) {
-            LOGGER.fine("Repository directory "+dir+" is only "+ Util.getTimeSpanString(now-dir.lastModified())+" old, so not deleting");
-            return false;
+
+        // If the marker file doesn't already exist, create it.
+        FilePath markerFile = new FilePath(dir, ".cleanupMarker");
+        if (!markerFile.exists()) {
+            // Giving marker file a modification time of now - 5 minutes, so that a check tomorrow
+            // will show it greater than 24 hours old.
+            markerFile.touch(now-(5*MIN));
         }
+
+        
         
         if (item instanceof AbstractProject) {
             AbstractProject p = (AbstractProject) item;
@@ -160,6 +165,30 @@ public class MavenRepoCleanerThread extends AsyncPeriodicWork {
             if (p.isBuilding()) {
                 LOGGER.fine("Repository directory " + dir + " belongs to a currently running build, so deletion is vetoed.");
                 return false;
+            }
+
+            MavenRepoCleanerProperty.DescriptorImpl d = (MavenRepoCleanerProperty.DescriptorImpl)mrcp.getDescriptor();
+
+            // If expirationStyle is 1, compare against directory's last modified time.
+            if (d.getExpirationStyle()==1) {
+                // if younger than the given range, keep it
+                if(dir.lastModified() + expirationDays * DAY > now) {
+                    LOGGER.fine("Repository directory "+dir+" is only "+ Util.getTimeSpanString(now-dir.lastModified())+" old, so not deleting");
+                    return false;
+                }
+            }
+            // If expirationStyle is 0, compare against marker file's last modified time.
+            else if (d.getExpirationStyle()==0) {
+                // if younger than the given range, keep it
+                if(markerFile.lastModified() + expirationDays * DAY > now) {
+                    LOGGER.fine("Repository directory marker file "+markerFile+" is only "+ Util.getTimeSpanString(now-markerFile.lastModified())+" old, so not deleting");
+                    return false;
+                }
+            }
+            // If expirationStyle is 2, just return true - we're deleting regardless.
+            else if (d.getExpirationStyle()==2) {
+                LOGGER.fine("Repository directory "+dir+" should be deleted regardless of age");
+                return true;
             }
         }
 

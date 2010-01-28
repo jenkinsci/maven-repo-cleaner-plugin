@@ -1,11 +1,25 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-  <f:section title="Maven Scheduled Repository Cleaner">
+  <f:section title="${%Maven Scheduled Repository Cleaner}">
     <f:entry title="${%Schedule}" help="/help/project-config/timer-format.html">
       <f:textarea name="mavenrepocleaner.cronSpec"
                   checkUrl="'${rootURL}/trigger/TimerTrigger/check?value='+escape(this.value)"
                   value="${descriptor.cronSpec}" />
     </f:entry>
-    <f:entry title="Expiration days">
+    <f:entry title="${%Expiration style}">
+      <f:radio name="mavenrepocleaner.expirationStyle" value="added" id="exp.added"
+               checked="${descriptor.expirationStyle==0}" />
+      <label for="exp.added">${%Since repository creation}</label>
+      <st:nbsp />
+      <f:radio name="mavenrepocleaner.expirationStyle" value="changed" id="exp.changed"
+               checked="${descriptor.expirationStyle==1}" />
+      <label for="exp.changed">${%Since repository last changed}</label>
+      <st:nbsp />
+      <f:radio name="mavenrepocleaner.expirationStyle" value="regardless" id="exp.regardless"
+               checked="${descriptor.expirationStyle==2}" />
+      <label for="exp.regardless">${%Regardless of repository age or modification time}</label>
+    </f:entry>      
+
+    <f:entry title="${%Expiration days}">
       <f:textbox name="mavenrepocleaner.expirationDays" value="${descriptor.expirationDays}" />
     </f:entry>
   </f:section>
