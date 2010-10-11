@@ -8,15 +8,15 @@
     <f:entry title="${%Expiration style}">
       <f:radio name="mavenrepocleaner.expirationStyle" value="added" id="exp.added"
                checked="${descriptor.expirationStyle==0}" />
-      <label for="exp.added">${%Since repository creation}</label>
+      <label class="attach-previous">${%Since repository creation}</label>
       <st:nbsp />
       <f:radio name="mavenrepocleaner.expirationStyle" value="changed" id="exp.changed"
                checked="${descriptor.expirationStyle==1}" />
-      <label for="exp.changed">${%Since repository last changed}</label>
+      <label class="attach-previous">${%Since repository last changed}</label>
       <st:nbsp />
       <f:radio name="mavenrepocleaner.expirationStyle" value="regardless" id="exp.regardless"
                checked="${descriptor.expirationStyle==2}" />
-      <label for="exp.regardless">${%Regardless of repository age or modification time}</label>
+      <label class="attach-previous">${%Regardless of repository age or modification time}</label>
     </f:entry>      
 
     <f:entry title="${%Expiration days}">
