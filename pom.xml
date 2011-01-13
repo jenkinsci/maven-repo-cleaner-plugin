@@ -14,22 +14,13 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>  
+  </properties> 
 
-  <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
-  <repositories>
-    <repository>
-      <id>m.g.o-public</id>
-      <url>http://maven.glassfish.org/content/groups/public/</url>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>m.g.o-public</id>
-      <url>http://maven.glassfish.org/content/groups/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
+  <scm>
+   <connection>scm:git:git://github.com/hudson/maven-repo-cleaner-plugin.git</connection>
+   <developerConnection>scm:git:git@github.com:hudson/maven-repo-cleaner-plugin.git</developerConnection>
+   <url>https://github.com/hudson/maven-repo-cleaner-plugin</url>
+  </scm>
   
   <developers>
     <developer>
@@ -63,5 +54,20 @@
       <url>file:.</url>
     </snapshotRepository>
   </distributionManagement>  
+
+  <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
+  <repositories>
+    <repository>
+      <id>m.g.o-public</id>
+      <url>http://maven.glassfish.org/content/groups/public/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>m.g.o-public</id>
+      <url>http://maven.glassfish.org/content/groups/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
   
 </project>
