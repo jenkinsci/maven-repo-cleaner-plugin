@@ -1,6 +1,0 @@
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-  <f:optionalBlock name="mavenrepocleaner.notOnThisProject" title="${%Disable Automated Maven Repository Cleanup}" checked="${instance.notOnThisProject}" />
-  <!--  <f:entry title="${%Disable Automated Maven Repository Cleanup}">
-    <f:checkbox name="mavenrepocleaner.notOnThisProject" checked="${it.notOnThisProject}" />
-  </f:entry> -->
-</j:jelly>
