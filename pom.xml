@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.jvnet.hudson.plugins</groupId>
+    <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>1.380</version>
+    <version>1.403</version>
   </parent>
 
   <groupId>org.jvnet.hudson.plugins</groupId>
@@ -17,9 +17,9 @@
   </properties> 
 
   <scm>
-   <connection>scm:git:git://github.com/hudson/maven-repo-cleaner-plugin.git</connection>
-   <developerConnection>scm:git:git@github.com:hudson/maven-repo-cleaner-plugin.git</developerConnection>
-   <url>https://github.com/hudson/maven-repo-cleaner-plugin</url>
+   <connection>scm:git:git://github.com/jenkinsci/maven-repo-cleaner-plugin.git</connection>
+   <developerConnection>scm:git:git@github.com:jenkinsci/maven-repo-cleaner-plugin.git</developerConnection>
+   <url>https://github.com/jenkinsci/maven-repo-cleaner-plugin</url>
   </scm>
   
   <developers>
@@ -34,24 +34,8 @@
       <name>Olivier Lamy</name>
     </developer>
   </developers>
-  
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>2.4.3</version>
-        </plugin>      
-      </plugins>
-    </pluginManagement>
-  </build>  
-  
+
   <dependencies>
-    <dependency>
-      <groupId>org.jvnet.hudson.main</groupId>
-      <artifactId>maven-plugin</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
@@ -66,11 +50,7 @@
       <id>local.repository</id>
       <url>file:.</url>
     </snapshotRepository>
-    <repository>
-      <id>java.net-m2-repository</id>
-      <url>http://maven.hudson-labs.org:8081/content/repositories/releases/</url>
-    </repository>    
-  </distributionManagement>  
+  </distributionManagement>
 
   <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
   <repositories>
