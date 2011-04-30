@@ -1,2 +1,2 @@
-moved to gitub https://github.com/hudson/maven-repo-cleaner-plugin
+moved to gitub https://github.com/jenkinsci/maven-repo-cleaner-plugin
 
