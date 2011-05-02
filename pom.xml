@@ -6,7 +6,6 @@
     <version>1.403</version>
   </parent>
 
-  <groupId>org.jvnet.hudson.plugins</groupId>
   <artifactId>maven-repo-cleaner</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>hpi</packaging>
