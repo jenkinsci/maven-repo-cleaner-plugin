@@ -36,8 +36,10 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Collections;
 
+import hudson.triggers.TimerTrigger;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 
@@ -69,8 +71,18 @@ public class MavenRepoCleanerProperty extends JobProperty<AbstractProject<?,?>> 
         private int expirationStyle = 1;
         
         public DescriptorImpl() {
-            super(MavenRepoCleanerProperty.class);
+            super( MavenRepoCleanerProperty.class );
             load();
+        }
+
+        @Override
+        public String getHelpFile( String fieldName )
+        {
+            if ( StringUtils.equals( fieldName, "timerSpec" )) {
+                return new TimerTrigger.DescriptorImpl().getHelpFile("spec");
+            }
+            return super.getHelpFile(
+                fieldName );
         }
 
         @Override
