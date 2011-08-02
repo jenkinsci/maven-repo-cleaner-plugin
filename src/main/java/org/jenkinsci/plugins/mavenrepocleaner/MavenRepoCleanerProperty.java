@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package hudson.plugins.mavenrepocleaner;
+package org.jenkinsci.plugins.mavenrepocleaner;
 
 import static hudson.Util.fixEmpty;
 import hudson.Extension;
