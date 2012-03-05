@@ -23,6 +23,7 @@
  */
 package org.jenkinsci.plugins.mavenrepocleaner;
 
+import static hudson.Util.fixEmptyAndTrim;
 import static hudson.Util.fixEmpty;
 import hudson.Extension;
 import hudson.model.JobProperty;
@@ -96,7 +97,7 @@ public class MavenRepoCleanerProperty extends JobProperty<AbstractProject<?,?>> 
 
         @Override
         public boolean configure(StaplerRequest req, JSONObject o) throws FormException {
-            cronSpec = fixEmpty(req.getParameter("mavenrepocleaner.cronSpec")).trim();
+            cronSpec = fixEmptyAndTrim(req.getParameter("mavenrepocleaner.cronSpec"));
             // Default to empty string.
             if (cronSpec == null) {
                 cronSpec = "";
