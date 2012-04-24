@@ -7,7 +7,7 @@
   </parent>
 
   <artifactId>maven-repo-cleaner</artifactId>
-  <version>1.1</version>
+  <version>1.2-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <name>Maven Repository Scheduled Cleanup Plugin</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Maven+Repo+Cleaner+Plugin</url>
