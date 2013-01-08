@@ -160,6 +160,9 @@ public class MavenRepoCleanerThread extends AsyncPeriodicWork {
                     LOGGER.fine("Repository cleaning disabled for job " + jobName);
                     return false;
                 }
+            } else {
+                LOGGER.fine("No MavenRepoCleanerProperty so Repository cleaning disabled for job " + jobName);
+                return false;
             }
             
             if (p.isBuilding()) {
