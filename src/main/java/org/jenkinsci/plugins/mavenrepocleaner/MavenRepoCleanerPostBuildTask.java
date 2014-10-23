@@ -36,11 +36,7 @@ public class MavenRepoCleanerPostBuildTask extends Recorder {
 
         final long started = build.getTimeInMillis();
         FilePath.FileCallable<Collection<String>> cleanup =
-            new FilePath.FileCallable<Collection<String>>() {
-                public Collection<String> invoke(File repository, VirtualChannel channel) throws IOException, InterruptedException {
-                    return new RepositoryCleaner(started).clean(repository);
-                }
-            };
+            new FileCallableImpl(started);
         Collection<String> removed = build.getWorkspace().child(".repository").act(cleanup);
         if (removed.size() > 0) {
             listener.getLogger().println( removed.size() + " unused artifacts removed from private maven repository" );
@@ -68,6 +64,15 @@ public class MavenRepoCleanerPostBuildTask extends Recorder {
         public boolean isApplicable(Class<? extends AbstractProject> jobType) {
             return FreeStyleProject.class.isAssignableFrom(jobType)
                     || AbstractMavenProject.class.isAssignableFrom(jobType);
+        }
+    }
+    private static class FileCallableImpl implements FilePath.FileCallable<Collection<String>> {
+        private final long started;
+        public FileCallableImpl(long started) {
+            this.started = started;
+        }
+        public Collection<String> invoke(File repository, VirtualChannel channel) throws IOException, InterruptedException {
+            return new RepositoryCleaner(started).clean(repository);
         }
     }
 }
