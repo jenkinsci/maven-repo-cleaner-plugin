@@ -1,24 +1,19 @@
 package org.jenkinsci.plugins.mavenrepocleaner;
 
+import org.apache.commons.io.DirectoryWalker;
+import org.apache.maven.index.artifact.Gav;
+import org.apache.maven.index.artifact.M2GavCalculator;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import hudson.os.PosixAPI;
-import org.apache.commons.io.DirectoryWalker;
-import org.apache.maven.artifact.repository.metadata.Metadata;
-import org.apache.maven.artifact.repository.metadata.Snapshot;
-import org.apache.maven.index.artifact.Gav;
-import org.apache.maven.index.artifact.M2GavCalculator;
-import org.jruby.ext.posix.FileStat;
-import org.kohsuke.args4j.CmdLineException;
-import org.kohsuke.args4j.CmdLineParser;
-
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Hello world!
@@ -65,9 +60,10 @@ public class RepositoryCleaner extends DirectoryWalker
 
     }
 
-    private void olderThan(File file, Gav artifact, Collection results) {
-        FileStat fs = PosixAPI.get().lstat(file.getPath());
-        long lastAccessTime = fs.atime();
+    private void olderThan(File file, Gav artifact, Collection results) throws IOException {
+        BasicFileAttributes attrs = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
+        FileTime time = attrs.lastAccessTime();
+        long lastAccessTime = time.toMillis();
         if (lastAccessTime < olderThan) {
             // This artifact hasn't been accessed during build
             clean(file, artifact, results);
