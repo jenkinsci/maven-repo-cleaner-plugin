@@ -20,7 +20,7 @@
     <jenkins.version>2.332.1</jenkins.version>
 
     <!--TODO: change to true after the code cleanup-->
-<!--    <spotbugs.failOnError>false</spotbugs.failOnError>-->
+    <spotbugs.failOnError>false</spotbugs.failOnError>
     <!-- well the parent pom could defined an empty one instead of causing failure!! -->
     <argLine />
   </properties>
