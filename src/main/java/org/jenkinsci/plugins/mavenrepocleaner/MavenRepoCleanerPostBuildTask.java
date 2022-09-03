@@ -15,6 +15,7 @@ import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
+import org.jenkinsci.remoting.RoleChecker;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.File;
@@ -22,7 +23,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 /**
- * @author: <a hef="mailto:nicolas.deloof@gmail.com">Nicolas De Loof</a>
+ * @author <a href="mailto:nicolas.deloof@gmail.com">Nicolas De Loof</a>
  */
 public class MavenRepoCleanerPostBuildTask extends Recorder {
 
@@ -73,6 +74,11 @@ public class MavenRepoCleanerPostBuildTask extends Recorder {
         }
         public Collection<String> invoke(File repository, VirtualChannel channel) throws IOException, InterruptedException {
             return new RepositoryCleaner(started).clean(repository);
+        }
+
+        @Override
+        public void checkRoles(RoleChecker checker) throws SecurityException {
+            // no much to control here
         }
     }
 }

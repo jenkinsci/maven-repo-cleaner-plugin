@@ -1,0 +1,3 @@
+_extends: .github
+tag-template: maven-repo-cleaner-$NEXT_MINOR_VERSION
+name-template: Maven Repo Cleaner $NEXT_MINOR_VERSION
