@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Hello world!
+ *
  *
  */
 public class RepositoryCleaner extends DirectoryWalker
