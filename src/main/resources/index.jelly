@@ -1,0 +1,4 @@
+ <?jelly escape-by-default='true'?>
+<div>
+  Plugin to cleanup maven repository after a build.
+</div>
