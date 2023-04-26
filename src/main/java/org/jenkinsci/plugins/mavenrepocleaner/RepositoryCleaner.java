@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import java.util.concurrent.TimeUnit
+;
 /**
  *
  *
@@ -63,7 +65,7 @@ public class RepositoryCleaner extends DirectoryWalker
     private void olderThan(File file, Gav artifact, Collection results) throws IOException {
         BasicFileAttributes attrs = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
         FileTime time = attrs.lastAccessTime();
-        long lastAccessTime = time.toMillis();
+        long lastAccessTime = time.to(TimeUnit.SECONDS);
         if (lastAccessTime < olderThan) {
             // This artifact hasn't been accessed during build
             clean(file, artifact, results);
