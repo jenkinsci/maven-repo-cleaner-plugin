@@ -8,13 +8,13 @@
   </parent>
 
   <artifactId>maven-repo-cleaner</artifactId>
-  <version>1.3</version>
+  <version>${revision}${changelist}</version>
   <packaging>hpi</packaging>
   <name>Maven Repository Scheduled Cleanup Plugin</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Maven+Repo+Cleaner+Plugin</url>
 
   <properties>
-    <revision>1.3</revision>
+    <revision>1.4</revision>
     <changelist>-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/${project.artifactId}</gitHubRepo>
     <jenkins.version>2.361.4</jenkins.version>
@@ -31,7 +31,7 @@
    <connection>scm:git:git://github.com/jenkinsci/maven-repo-cleaner-plugin.git</connection>
    <developerConnection>scm:git:git@github.com:jenkinsci/maven-repo-cleaner-plugin.git</developerConnection>
    <url>https://github.com/jenkinsci/maven-repo-cleaner-plugin</url>
-    <tag>maven-repo-cleaner-1.3</tag>
+    <tag>HEAD</tag>
   </scm>
   
   <developers>
