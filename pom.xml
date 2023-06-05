@@ -69,7 +69,7 @@
       <dependency>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>junit</artifactId>
-        <version>1119.1121.vc43d0fc45561</version>
+        <version>1207.va_09d5100410f</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
